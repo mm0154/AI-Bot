@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+
+console.log(backendUrl)
 const ChatWindow = ({ user }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
   const sendMessage = async () => {
     if(user.id === 4){
-        const res = await axios.post("https://0404b5361f9b.ngrok-free.app/chat", { prompt: input }, {
+        const res = await axios.post(`${backendUrl}/chat`, { prompt: input }, {
         headers: {
             "Content-Type": "application/json",
             "ngrok-skip-browser-warning": true
